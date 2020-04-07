@@ -1,0 +1,35 @@
+﻿<Window x:Class="QueteMVVM.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QueteMVVM"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid Margin="0,0,0,20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <ListView x:Name="ShopGrid" Grid.Row="1" Margin="12,125,11.6,13"  ItemsSource="{Binding Shops}"  >
+            <ListView.View>
+                <GridView x:Name="grdTest">
+                    <GridViewColumn Header="ShopId" DisplayMemberBinding="{Binding ShopId}"  Width="50"/>
+                    <GridViewColumn Header="Shop Name" DisplayMemberBinding="{Binding ShopName}"  Width="150" />
+                    <GridViewColumn Header="Addres" DisplayMemberBinding="{Binding Addres}" Width="300" />
+                    <GridViewColumn Header="Country" DisplayMemberBinding="{Binding Country}" Width="100" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <TextBox Grid.Row="1" Height="23" HorizontalAlignment="Left" Margin="102,7,0,0" Name="txtShopId" VerticalAlignment="Top" Width="178" Text="{Binding ElementName=ShopGrid, Path=SelectedItem.ShopId}" />
+        <TextBox Grid.Row="1" Height="23" HorizontalAlignment="Left" Margin="102,35,0,0" Name="txtShopName" VerticalAlignment="Top" Width="178" Text="{Binding ElementName=ShopGrid, Path=SelectedItem.ShopName}" />
+        <TextBox Grid.Row="1" Height="23" HorizontalAlignment="Left" Margin="102,62,0,0" Name="txtAddres" VerticalAlignment="Top" Width="178" Text="{Binding ElementName=ShopGrid, Path=SelectedItem.Addres}" />
+        <TextBox Grid.Row="1" Height="23" HorizontalAlignment="Left" Margin="102,90,0,0" Name="txtCountry" VerticalAlignment="Top" Width="178" Text="{Binding ElementName=ShopGrid, Path=SelectedItem.Country}" />
+        <Label Content="ShopId" Grid.Row="1" Height="28" HorizontalAlignment="Left" Margin="12,12,0,365" Name="ShopIdLabel" />
+        <Label Content="Shop Name" Grid.Row="1" Height="28" HorizontalAlignment="Left" Margin="12,35,0,0" Name="ShopNameLabel" VerticalAlignment="Top" />
+        <Label Content="Addres" Grid.Row="1" Height="28" HorizontalAlignment="Left" Margin="12,60,0,0" Name="AddresLabel" VerticalAlignment="Top" />
+        <Label Content="Country" Grid.Row="1" Height="28" HorizontalAlignment="Left" Margin="12,85,0,0" Name="CountryLabel" VerticalAlignment="Top" />
+        <Button Content="Add Shop" Grid.Row="1" Height="23" HorizontalAlignment="Left" Margin="310,40,0,0" Name="btnAddShop" VerticalAlignment="Top" Width="141" Command="{Binding Path=AddShopCommand}" />
+    </Grid>
+</Window>
